@@ -1,0 +1,56 @@
+module aether-packet-xcvr {
+  namespace "http://example.com/xcvrs";
+  prefix "xcvrs";
+
+  description
+    "A simple YANG model for transceivers (xcvrs)";
+
+  revision "2024-10-31" {
+    description
+      "Initial revision.";
+  }
+
+  container transceivers {
+    description "Container for transceiver modules.";
+
+    list transceiver {
+      key "id";
+      description "List of transceiver entries.";
+
+      leaf id {
+        type string;
+        description "Unique identifier for the transceiver.";
+      }
+
+      leaf type {
+        type enumeration {
+          enum "SFP" {
+            description "Small Form-factor Pluggable";
+          }
+          enum "QSFP" {
+            description "Quad Small Form-factor Pluggable";
+          }
+          enum "CFP" {
+            description "C Form-factor Pluggable";
+          }
+        }
+        description "Type of transceiver.";
+      }
+
+      leaf status {
+        type enumeration {
+          enum "up" {
+            description "Transceiver is operational.";
+          }
+          enum "down" {
+            description "Transceiver is non-operational.";
+          }
+          enum "unknown" {
+            description "Transceiver status is unknown.";
+          }
+        }
+        description "Operational status of the transceiver.";
+      }
+    }
+  }
+}
